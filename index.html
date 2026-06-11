@@ -9,6 +9,8 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Visionary Barber Shop">
 <link rel="canonical" href="https://visionarybarber.com.br/">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
 <meta property="og:type" content="business.business">
 <meta property="og:title" content="Visionary Barber Shop — Barbearia em Curitiba">
 <meta property="og:description" content="Corte, barba e navalhado de verdade. 4,9★ no Google. Cidade Industrial, Curitiba.">
@@ -83,8 +85,9 @@ section{position:relative;padding:clamp(3.5rem,8vh,6.5rem) 0}
 /* nav */
 nav{position:fixed;top:0;left:0;width:100%;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,5vw,3.5rem);transition:.4s var(--ease);border-bottom:1px solid transparent}
 nav.scr{background:rgba(10,10,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:.9rem;padding-bottom:.9rem}
-.logo{font-family:var(--serif);font-weight:900;font-size:1.4rem;letter-spacing:.16em;color:var(--cream)}
+.logo{font-family:var(--serif);font-weight:900;font-size:1.4rem;letter-spacing:.16em;color:var(--cream);display:flex;align-items:center}
 .logo b{color:var(--gold)}
+.logo img{height:50px;width:auto;display:block;border-radius:50%}
 .nav-r{display:flex;align-items:center;gap:2rem}
 .nav-menu{display:flex;gap:1.8rem;list-style:none}
 .nav-menu a{font-size:.82rem;font-weight:500;letter-spacing:.06em;color:var(--muted);transition:.25s;text-transform:uppercase}
@@ -107,6 +110,8 @@ nav.scr{background:rgba(10,10,12,.78);backdrop-filter:blur(14px);border-bottom:1
 .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(1.05) contrast(1.05)}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.7),rgba(10,10,12,.35) 40%,var(--ink) 96%)}
 .hero-in{position:relative}
+.hero-logo{opacity:0;margin-bottom:1.4rem}
+.hero-logo img{width:clamp(124px,20vw,170px);height:auto;border-radius:50%;filter:drop-shadow(0 16px 46px rgba(0,0,0,.65))}
 .hero-status{display:inline-flex;align-items:center;gap:.6rem;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);border:1px solid var(--line);border-radius:50px;padding:.45rem 1rem;margin-bottom:1.8rem;opacity:0}
 .hero-status .dot{width:8px;height:8px;border-radius:50%;background:#3fcf8e;box-shadow:0 0 10px #3fcf8e}
 .hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(3rem,12vw,8rem);line-height:.92;letter-spacing:.04em;color:var(--cream)}
@@ -249,9 +254,10 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 2.4rem}
 <header class="hero" id="top">
   <div class="hero-bg"><img src="img/hero.jpg" alt="Interior da Visionary Barber Shop em Curitiba"></div>
   <div class="wrap hero-in">
+    <div class="hero-logo" id="hLogo"><img src="img/logo.png" alt="Visionary Barber Shop — Curitiba"></div>
     <div class="hero-status" id="hStatus"><span class="dot"></span> Aberto Seg–Sex · 09h às 19h</div>
-    <h1 id="hTitle"><span class="o">VISIONARY</span><span class="o"><em>Barber Shop</em></span></h1>
-    <p class="hero-sub" id="hSub">Corte · Barba · Navalhado — Curitiba</p>
+    <h1 id="hTitle"><span class="o">Corte. Barba.</span><span class="o"><em>Navalhado.</em></span></h1>
+    <p class="hero-sub" id="hSub">Barbearia premium — Cidade Industrial, Curitiba</p>
     <div class="hero-act" id="hAct">
       <a href="https://wa.me/554132854024?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener" class="btn" data-cur data-mag>Agendar horário ↗</a>
       <a href="#servicos" class="btn btn-ghost" data-cur>Ver serviços</a>
@@ -376,7 +382,7 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 2.4rem}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <div class="logo">VISIONARY<b>.</b></div>
+        <div class="logo"><img src="img/logo.png" alt="Visionary Barber Shop" style="height:78px"></div>
         <p>Barbearia premium na Cidade Industrial de Curitiba. Corte, barba e navalhado de verdade — 4,9★ no Google.</p>
       </div>
       <div class="foot-col"><h5>Menu</h5><a href="#sobre">A barbearia</a><a href="#servicos">Serviços</a><a href="#avaliacoes">Avaliações</a><a href="#local">Onde estamos</a></div>
@@ -428,11 +434,13 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 2.4rem}
 
   /* entrada do hero */
   function intro(){
-    if(typeof gsap==='undefined'){['hStatus','hSub','hAct','hRate'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.opacity=1;});document.getElementById('hTitle').querySelectorAll('.o').forEach(function(o){o.style.opacity=1;});return;}
+    if(typeof gsap==='undefined'){['hLogo','hStatus','hSub','hAct','hRate'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.opacity=1;});document.getElementById('hTitle').querySelectorAll('.o').forEach(function(o){o.style.opacity=1;});return;}
     var tl=gsap.timeline();
+    gsap.set('#hLogo',{opacity:0,scale:.86,y:8});
     gsap.set('#hTitle .o',{yPercent:110});
-    tl.to('#hStatus',{opacity:1,duration:.7,delay:.15})
-      .to('#hTitle .o',{yPercent:0,duration:1.1,ease:'power4.out',stagger:.12},'-=.4')
+    tl.to('#hLogo',{opacity:1,scale:1,y:0,duration:.9,ease:'power3.out',delay:.1})
+      .to('#hStatus',{opacity:1,duration:.6},'-=.3')
+      .to('#hTitle .o',{yPercent:0,duration:1.0,ease:'power4.out',stagger:.1},'-=.25')
       .to('#hSub',{opacity:1,duration:.8,ease:'power3.out'},'-=.6')
       .to('#hAct',{opacity:1,duration:.8,ease:'power3.out'},'-=.6')
       .to('#hRate',{opacity:1,duration:.8,ease:'power3.out'},'-=.6');
