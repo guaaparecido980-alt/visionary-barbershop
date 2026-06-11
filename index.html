@@ -105,7 +105,7 @@ nav.scr{background:rgba(10,10,12,.78);backdrop-filter:blur(14px);border-bottom:1
 .mmenu .mc{margin-top:1.4rem;background:var(--gold);color:var(--ink);text-align:center;border-radius:50px;border:none;font-family:var(--sans);font-weight:700;font-size:1rem}
 
 /* hero */
-.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:6rem}
+.hero{min-height:100svh;display:flex;align-items:flex-start;position:relative;overflow:hidden;padding-top:clamp(7rem,17vh,11rem)}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(1.05) contrast(1.05)}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.7),rgba(10,10,12,.35) 40%,var(--ink) 96%)}
@@ -254,7 +254,6 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 2.4rem}
 <header class="hero" id="top">
   <div class="hero-bg"><img src="img/hero.jpg" alt="Interior da Visionary Barber Shop em Curitiba"></div>
   <div class="wrap hero-in">
-    <div class="hero-logo" id="hLogo"><img src="img/logo.png" alt="Visionary Barber Shop — Curitiba"></div>
     <div class="hero-status" id="hStatus"><span class="dot"></span> Aberto Seg–Sex · 09h às 19h</div>
     <h1 id="hTitle"><span class="o">Corte. Barba.</span><span class="o"><em>Navalhado.</em></span></h1>
     <p class="hero-sub" id="hSub">Barbearia premium — Cidade Industrial, Curitiba</p>
@@ -434,12 +433,10 @@ footer{border-top:1px solid var(--line);padding:3.5rem 0 2.4rem}
 
   /* entrada do hero */
   function intro(){
-    if(typeof gsap==='undefined'){['hLogo','hStatus','hSub','hAct','hRate'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.opacity=1;});document.getElementById('hTitle').querySelectorAll('.o').forEach(function(o){o.style.opacity=1;});return;}
+    if(typeof gsap==='undefined'){['hStatus','hSub','hAct','hRate'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.opacity=1;});document.getElementById('hTitle').querySelectorAll('.o').forEach(function(o){o.style.opacity=1;});return;}
     var tl=gsap.timeline();
-    gsap.set('#hLogo',{opacity:0,scale:.86,y:8});
     gsap.set('#hTitle .o',{yPercent:110});
-    tl.to('#hLogo',{opacity:1,scale:1,y:0,duration:.9,ease:'power3.out',delay:.1})
-      .to('#hStatus',{opacity:1,duration:.6},'-=.3')
+    tl.to('#hStatus',{opacity:1,duration:.6,delay:.15})
       .to('#hTitle .o',{yPercent:0,duration:1.0,ease:'power4.out',stagger:.1},'-=.25')
       .to('#hSub',{opacity:1,duration:.8,ease:'power3.out'},'-=.6')
       .to('#hAct',{opacity:1,duration:.8,ease:'power3.out'},'-=.6')
